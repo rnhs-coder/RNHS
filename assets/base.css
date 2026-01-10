@@ -3629,22 +3629,24 @@ details-disclosure > details {
 /* Button style */
 .readmore-btn{
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 8px;
   cursor: pointer;
   color: #000;
   font-weight: 500;
-  float: inline-end;
-  padding-right: 10px;
+  float: inline-start;
+  padding-left: 0.25rem;
+  padding-right: 0;
 }
 
 /* Default button text */
 .readmore-btn::after{
-  content: "Read More";
+  content: "See more";
+  text-transform: none;
 }
 
 /* When open — text changes */
 #readmore-check:checked ~ .readmore-btn::after{
-  content: "Read Less";
+  content: "See less";
 }
 
 /* Hide checkbox */
