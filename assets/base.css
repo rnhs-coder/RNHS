@@ -3649,6 +3649,31 @@ details-disclosure > details {
   content: "See less";
 }
 
+/* Blue button style with caret */
+.readmore-btn {
+  color: #1a73e8;
+  background: rgba(26,117,232,0.06);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.readmore-btn::before {
+  content: '▾';
+  display: inline-block;
+  font-size: 0.9rem;
+  transition: transform 160ms ease;
+  color: #1a73e8;
+}
+
+#readmore-check:checked ~ .readmore-btn::before {
+  transform: rotate(180deg);
+}
+
 /* Hide checkbox */
 #readmore-check{
   display:none;
