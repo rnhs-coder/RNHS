@@ -1,1 +1,163 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"text_4hweXF":{"type":"text","settings":{"text":"","text_style":"body"}},"price":{"type":"price","settings":{}},"description":{"type":"description","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"collapsible_tab_with_icon_GMynYA":{"type":"collapsible_tab_with_icon","settings":{"heading":"Contact Us","layout":"horizontal","icon_1":"ruler","image_1":"shopify:\/\/shop_images\/color-selection_a9f6b960-7d9f-40be-b1f0-83b4d4f25993.png","heading_1":"Customization","icon_2":"truck","image_2":"shopify:\/\/shop_images\/delivery-truck.png","heading_2":"Early Delivery","icon_3":"truck","image_3":"shopify:\/\/shop_images\/ruler.png","heading_3":"Fitting Assistance","phone_number":"+1 (657) 399-3425","email_id":"rnheritagestudio@gmail.com","whatsapp_number":"+1 (657) 399-3425"}},"collapsible_tab_pRX4qx":{"type":"collapsible_tab","settings":{"heading":"Delivery and Returns","icon":"none","content":"<p>This item is eligible for return within 7 days of delivery in U.S.A. <\/p>","page":""}},"collapsible_tab_Dd7RBB":{"type":"collapsible_tab","settings":{"heading":"Disclaimer","icon":"none","content":"<p>The color of the product may vary slightly from how it appears here. This can happen due to different display settings on various devices, as well as any lighting effects or filters used during the photoshoot.<\/p>","page":""}},"share":{"type":"share","settings":{"share_label":"Share"}},"custom_liquid_izX74b":{"type":"custom_liquid","settings":{"custom_liquid":"<style>\n  .hide-media{\n    display:none;\n    width:0\n  }\n<\/style>\n<script>\n\n  const handle = \"products\/\" + \"{{ product.handle }}\" + \".js\";\n\nfetch(window.Shopify.routes.root + handle)\n  .then(response => response.json())\n  .then(product => {\n    const optionsToWatch = \"{{settings.media_grouping_option}}\".split(\",\");\n    const colorOption = product.options.find(option => optionsToWatch.includes(option.name))|| null;\n    if (!colorOption) {\n      console.log(\"No color options available for this product.\");\n      return;\n    }\n    \/\/ Retrieve color values\n    const colorValues = colorOption.values;\n    \/\/ Build an object to store the starting image positions for each color\n    const colorImagePositions = {};\n    \n    colorValues.forEach(color => {\n      \/\/ Find the first variant of this color and get its featured image position\n      const variant = product.variants.find(variant => variant.options[colorOption.position - 1] === color);\n      \n      if (variant && variant.featured_media) {\n        colorImagePositions[color] = variant.featured_media.position;\n      }\n    });    \n    \/\/ Sort colors based on their starting positions to calculate image ranges\n    const sortedColors = Object.entries(colorImagePositions).sort((a, b) => a[1] - b[1]);\n    \/\/ Calculate ranges and log the result\n    const colorImageRanges = {};\n    sortedColors.forEach((color, index) => {\n      const colorName = color[0];\n      const startPos = color[1];\n      const endPos = sortedColors[index + 1] ? sortedColors[index + 1][1] : null;\n      \n      colorImageRanges[colorName] = endPos ? [startPos, endPos] : [startPos];\n    });\n    \/\/ Build an object to store image IDs grouped by color based on colorImageRanges\n    const colorImageIDs = {};\n    Object.entries(colorImageRanges).forEach(([color, range]) => {\n      const startPos = range[0];\n      const endPos = range[1] || product.media.length +1; \/\/ If no end, assume range goes to the end of the images\n      \/\/ Find all images within the range for this color\n      const imageIDs = product.media\n        .filter((media, index) => {\n          const imagePosition = index + 1; \/\/ Adjust index to be position-based\n          return imagePosition >= startPos && imagePosition < endPos;\n        })\n        .map(media => media.id); \/\/ Store the image ID\n\n      colorImageIDs[color] = imageIDs;\n    });\n    const mediaGallery = document.querySelector('media-gallery');\n    const productSection = document.querySelector(\".product-variant-id\")\n    const sectionID = \"{{ section.id }}\"\n    \/\/ Iterate over colorImageIDs to apply data-media-group based on the color ranges\n    Object.entries(colorImageIDs).forEach(([color, imageIDs]) => {\n      imageIDs.forEach(mediaID => {\n        \/\/ Construct the selector for each media item using sectionID and media ID\n        const selector = `[data-media-id=\"${sectionID}-${mediaID}\"], [data-target=\"${sectionID}-${mediaID}\"]`;\n        \/\/ Find the image <li> and add the data-media-group attribute with the color\n        const mediaItems = mediaGallery.querySelectorAll(`li${selector}`);\n        mediaItems.forEach(mediaItem=>{\n          mediaItem.setAttribute('data-media-group', color);\n        })\n      });\n    });\n  const showVariantImage = () => {\n    const variantSelects = document.querySelector('variant-selects');\n    \/\/ Get the currently selected color\n    let currentValues = Array.from(\n      variantSelects.querySelectorAll('select option[selected], fieldset input:checked')\n    ).map(el => el.value);\n    \n    let selectedColor = currentValues.find(value => colorImageRanges.hasOwnProperty(value));\n  \n    \/\/ Show\/Hide images based on selected color\n    mediaGallery.querySelectorAll('ul li[data-media-group]').forEach((mediaItem, index) => {\n      if (mediaItem.getAttribute('data-media-group') === selectedColor) {\n        mediaItem.classList.remove('hide-media');\n      } else {\n        mediaItem.classList.add('hide-media');\n      }\n    });\n  \n    \/\/ Reinitialize the slider if needed\n    mediaGallery.querySelectorAll('slider-component').forEach(slider => {\n      slider.initPages();\n    });\n  }\n    showVariantImage() \n    \/\/ Event listener to show\/hide images based on the selected color\n    productSection.addEventListener('change', showVariantImage); \n  })\n  .catch(error => console.error(\"Error fetching product data:\", error));\n<\/script>"}}},"block_order":["vendor","title","text_4hweXF","price","description","variant_picker","quantity_selector","buy_buttons","collapsible_tab_with_icon_GMynYA","collapsible_tab_pRX4qx","collapsible_tab_Dd7RBB","share","custom_liquid_izX74b"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1","media_size":"small","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","mobile_thumbnails":"show","media_position":"left","image_zoom":"hover","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_4hweXF": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_with_icon_GMynYA": {
+          "type": "collapsible_tab_with_icon",
+          "settings": {
+            "heading": "Contact Us",
+            "layout": "horizontal",
+            "icon_1": "ruler",
+            "image_1": "shopify://shop_images/color-selection_a9f6b960-7d9f-40be-b1f0-83b4d4f25993.png",
+            "heading_1": "Customization",
+            "icon_2": "truck",
+            "image_2": "shopify://shop_images/delivery-truck.png",
+            "heading_2": "Early Delivery",
+            "icon_3": "truck",
+            "image_3": "shopify://shop_images/ruler.png",
+            "heading_3": "Fitting Assistance",
+            "phone_number": "+1 (657) 399-3425",
+            "email_id": "rnheritagestudio@gmail.com",
+            "whatsapp_number": "+1 (657) 399-3425"
+          }
+        },
+        "collapsible_tab_pRX4qx": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Delivery and Returns",
+            "icon": "none",
+            "content": "<p>This item is eligible for return within 7 days of delivery in U.S.A. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_Dd7RBB": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Disclaimer",
+            "icon": "none",
+            "content": "<p>The color of the product may vary slightly from how it appears here. This can happen due to different display settings on various devices, as well as any lighting effects or filters used during the photoshoot.</p>",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "custom_liquid_izX74b": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .hide-media{\n    display:none;\n    width:0\n  }\n</style>\n<script>\n\n  const handle = \"products/\" + \"{{ product.handle }}\" + \".js\";\n\nfetch(window.Shopify.routes.root + handle)\n  .then(response => response.json())\n  .then(product => {\n    const optionsToWatch = \"{{settings.media_grouping_option}}\".split(\",\");\n    const colorOption = product.options.find(option => optionsToWatch.includes(option.name))|| null;\n    if (!colorOption) {\n      console.log(\"No color options available for this product.\");\n      return;\n    }\n    // Retrieve color values\n    const colorValues = colorOption.values;\n    // Build an object to store the starting image positions for each color\n    const colorImagePositions = {};\n    \n    colorValues.forEach(color => {\n      // Find the first variant of this color and get its featured image position\n      const variant = product.variants.find(variant => variant.options[colorOption.position - 1] === color);\n      \n      if (variant && variant.featured_media) {\n        colorImagePositions[color] = variant.featured_media.position;\n      }\n    });    \n    // Sort colors based on their starting positions to calculate image ranges\n    const sortedColors = Object.entries(colorImagePositions).sort((a, b) => a[1] - b[1]);\n    // Calculate ranges and log the result\n    const colorImageRanges = {};\n    sortedColors.forEach((color, index) => {\n      const colorName = color[0];\n      const startPos = color[1];\n      const endPos = sortedColors[index + 1] ? sortedColors[index + 1][1] : null;\n      \n      colorImageRanges[colorName] = endPos ? [startPos, endPos] : [startPos];\n    });\n    // Build an object to store image IDs grouped by color based on colorImageRanges\n    const colorImageIDs = {};\n    Object.entries(colorImageRanges).forEach(([color, range]) => {\n      const startPos = range[0];\n      const endPos = range[1] || product.media.length +1; // If no end, assume range goes to the end of the images\n      // Find all images within the range for this color\n      const imageIDs = product.media\n        .filter((media, index) => {\n          const imagePosition = index + 1; // Adjust index to be position-based\n          return imagePosition >= startPos && imagePosition < endPos;\n        })\n        .map(media => media.id); // Store the image ID\n\n      colorImageIDs[color] = imageIDs;\n    });\n    const mediaGallery = document.querySelector('media-gallery');\n    const productSection = document.querySelector(\".product-variant-id\")\n    const sectionID = \"{{ section.id }}\"\n    // Iterate over colorImageIDs to apply data-media-group based on the color ranges\n    Object.entries(colorImageIDs).forEach(([color, imageIDs]) => {\n      imageIDs.forEach(mediaID => {\n        // Construct the selector for each media item using sectionID and media ID\n        const selector = `[data-media-id=\"${sectionID}-${mediaID}\"], [data-target=\"${sectionID}-${mediaID}\"]`;\n        // Find the image <li> and add the data-media-group attribute with the color\n        const mediaItems = mediaGallery.querySelectorAll(`li${selector}`);\n        mediaItems.forEach(mediaItem=>{\n          mediaItem.setAttribute('data-media-group', color);\n        })\n      });\n    });\n  const showVariantImage = () => {\n    const variantSelects = document.querySelector('variant-selects');\n    // Get the currently selected color\n    let currentValues = Array.from(\n      variantSelects.querySelectorAll('select option[selected], fieldset input:checked')\n    ).map(el => el.value);\n    \n    let selectedColor = currentValues.find(value => colorImageRanges.hasOwnProperty(value));\n  \n    // Show/Hide images based on selected color\n    mediaGallery.querySelectorAll('ul li[data-media-group]').forEach((mediaItem, index) => {\n      if (mediaItem.getAttribute('data-media-group') === selectedColor) {\n        mediaItem.classList.remove('hide-media');\n      } else {\n        mediaItem.classList.add('hide-media');\n      }\n    });\n  \n    // Reinitialize the slider if needed\n    mediaGallery.querySelectorAll('slider-component').forEach(slider => {\n      slider.initPages();\n    });\n  }\n    showVariantImage() \n    // Event listener to show/hide images based on the selected color\n    productSection.addEventListener('change', showVariantImage); \n  })\n  .catch(error => console.error(\"Error fetching product data:\", error));\n</script>"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "text_4hweXF",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_with_icon_GMynYA",
+        "collapsible_tab_pRX4qx",
+        "collapsible_tab_Dd7RBB",
+        "share",
+        "custom_liquid_izX74b"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}
