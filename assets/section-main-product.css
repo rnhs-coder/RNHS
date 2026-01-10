@@ -368,15 +368,15 @@ product-info {
 
 /* Modern card style for product description */
 .product__description.rte.quick-add-hidden {
-  background: rgb(var(--color-background));
+  background: transparent;
   color: rgba(var(--color-foreground), 0.9);
-  border-radius: 1rem;
-  padding: 1.2rem 1.4rem;
+  border-radius: 0.6rem;
+  padding: 0;
   box-shadow: none;
-  border: 1px solid rgba(var(--color-foreground), 0.04);
+  border: none;
   font-size: 1.45rem;
   line-height: 1.6;
-  margin-top: 0.8rem !important;
+  margin-top: 0 !important;
 }
 
 .product__description.rte.quick-add-hidden p {
