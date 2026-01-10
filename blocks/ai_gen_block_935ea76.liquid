@@ -1,0 +1,487 @@
+{% doc %}
+  @prompt
+    create map section 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-map-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-map-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-map-content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-map-content-{{ ai_gen_id }} {
+      grid-template-columns: {% if block.settings.layout == 'map_left' %}1fr 1fr{% elsif block.settings.layout == 'map_right' %}1fr 1fr{% else %}1fr{% endif %};
+    }
+
+    .ai-map-content-{{ ai_gen_id }}--map-left .ai-map-wrapper-{{ ai_gen_id }} {
+      order: 1;
+    }
+
+    .ai-map-content-{{ ai_gen_id }}--map-left .ai-map-info-{{ ai_gen_id }} {
+      order: 2;
+    }
+
+    .ai-map-content-{{ ai_gen_id }}--map-right .ai-map-wrapper-{{ ai_gen_id }} {
+      order: 2;
+    }
+
+    .ai-map-content-{{ ai_gen_id }}--map-right .ai-map-info-{{ ai_gen_id }} {
+      order: 1;
+    }
+  }
+
+  .ai-map-info-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-map-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ai-map-address-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+  }
+
+  .ai-map-address-{{ ai_gen_id }} p {
+    margin: 0 0 8px;
+  }
+
+  .ai-map-hours-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+  }
+
+  .ai-map-hours-{{ ai_gen_id }} p {
+    margin: 0 0 8px;
+  }
+
+  .ai-map-contact-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-map-contact-item-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-map-contact-item-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-map-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.map_height }}px;
+    border-radius: {{ block.settings.map_border_radius }}px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-map-iframe-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .ai-map-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    position: relative;
+  }
+
+  .ai-map-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .ai-map-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-map-directions-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.text_size }}px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-map-directions-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-map-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.map_height | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<map-section-{{ ai_gen_id }} class="ai-map-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-map-container-{{ ai_gen_id }}">
+    <div class="ai-map-content-{{ ai_gen_id }} ai-map-content-{{ ai_gen_id }}--{{ block.settings.layout }}">
+      <div class="ai-map-wrapper-{{ ai_gen_id }}">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3040.4532595112432!2d-74.64703662497843!3d40.35447305942772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3e6e140200437%3A0x5acebdea1c5cef89!2s366%20Nassau%20St%2C%20Princeton%2C%20NJ%2008540%2C%20USA!5e0!3m2!1sen!2sin!4v1767578434960!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {% if block.settings.map_address != blank %}
+          {% comment %} <iframe
+            class="ai-map-iframe-{{ ai_gen_id }}"
+            src="https://maps.google.com/maps?q={{ block.settings.map_address | url_encode }}&output=embed"
+            loading="lazy"
+            title="Google Map showing {{ block.settings.map_address }}"
+          ></iframe> {% endcomment %}
+        {% else %}
+          <div class="ai-map-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-map-empty-state-{{ ai_gen_id }}">
+              Next, add a map address
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-map-info-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-map-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        {% if block.settings.address != blank %}
+          <div class="ai-map-address-{{ ai_gen_id }}">
+            {{ block.settings.address }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.hours != blank %}
+          <div class="ai-map-hours-{{ ai_gen_id }}">
+            {{ block.settings.hours }}
+          </div>
+        {% endif %}
+
+        <div class="ai-map-contact-{{ ai_gen_id }}">
+          {% if block.settings.phone != blank %}
+            <a href="tel:{{ block.settings.phone | replace: ' ', '' }}" class="ai-map-contact-item-{{ ai_gen_id }}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              {{ block.settings.phone }}
+            </a>
+          {% endif %}
+
+          {% if block.settings.email != blank %}
+            <a href="mailto:{{ block.settings.email }}" class="ai-map-contact-item-{{ ai_gen_id }}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              {{ block.settings.email }}
+            </a>
+          {% endif %}
+        </div>
+
+        {% if block.settings.show_directions_button and block.settings.map_address != blank %}
+          <div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination={{ block.settings.map_address | url_encode }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ai-map-directions-button-{{ ai_gen_id }}"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              {{ block.settings.directions_button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</map-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class MapSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('map-section-{{ ai_gen_id }}', MapSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Map section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "text",
+      "id": "map_address",
+      "label": "Map address",
+      "info": "Enter the full address to display on the map"
+    },
+    {
+      "type": "range",
+      "id": "map_height",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Map height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "map_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Map border radius",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "map_left",
+          "label": "Map on left"
+        },
+        {
+          "value": "map_right",
+          "label": "Map on right"
+        },
+        {
+          "value": "map_only",
+          "label": "Map only"
+        }
+      ],
+      "default": "map_left"
+    },
+    {
+      "type": "header",
+      "content": "Location information"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Visit our store"
+    },
+    {
+      "type": "richtext",
+      "id": "address",
+      "label": "Address",
+      "default": "<p>123 Main Street<br>New York, NY 10001<br>United States</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "hours",
+      "label": "Hours",
+      "default": "<p><strong>Hours</strong><br>Mon - Fri: 9am - 6pm<br>Sat - Sun: 10am - 4pm</p>"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "header",
+      "content": "Directions button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_directions_button",
+      "label": "Show directions button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "directions_button_text",
+      "label": "Button text",
+      "default": "Get directions"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 600,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map section"
+    }
+  ]
+}
+{% endschema %}
