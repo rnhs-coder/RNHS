@@ -3663,9 +3663,17 @@ details-disclosure > details {
 }
 
 #readmore-check:checked ~ .readmore-btn,
-.readmore-btn {
+.readmore-btn,
+label[for="readmore-check"].readmore-btn {
   box-shadow: none !important;
   border: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  float: left !important;
+  color: #1a73e8 !important;
+  font-weight: 600 !important;
 }
 
 .readmore-btn::before {
@@ -3678,6 +3686,16 @@ details-disclosure > details {
 
 #readmore-check:checked ~ .readmore-btn::before {
   transform: rotate(180deg);
+}
+
+/* Ensure no hover/focus background */
+.readmore-btn:hover,
+.readmore-btn:focus,
+label[for="readmore-check"].readmore-btn:hover,
+label[for="readmore-check"].readmore-btn:focus {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Hide checkbox */
