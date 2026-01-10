@@ -66,6 +66,38 @@ product-info {
     width: auto;
   }
 
+  /* Fallback: target Gallery/Slider IDs directly so thumbnails show even if wrapper classes differ */
+  [id^="GalleryThumbnails-"] {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  [id^="GalleryThumbnails-"] .thumbnail-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+    padding: 0 !important;
+  }
+
+  [id^="Slider-Thumbnails-"] .thumbnail-list__item,
+  [id^="GalleryThumbnails-"] .thumbnail-list__item {
+    width: auto !important;
+  }
+
+  /* Ensure thumbnails keep visible size in the vertical layout */
+  [id^="GalleryThumbnails-"] .thumbnail {
+    position: relative !important;
+    height: 6.4rem !important;
+    width: 6.4rem !important;
+  }
+
+  [id^="GalleryThumbnails-"] .thumbnail img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
   .product__info-wrapper {
     padding: 0 0 0 5rem;
   }
