@@ -125,6 +125,47 @@ product-info {
     padding: 0 !important;
   }
 
+  /* Collapse extra spacing between slider components and list items */
+  [id^="GalleryThumbnails-"] ,
+  [id^="Slider-Thumbnails-"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+
+  [id^="GalleryThumbnails-"] .slider-button,
+  [id^="Slider-Thumbnails-"] .slider-button {
+    margin: 0 !important;
+    padding: 0.2rem !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  [id^="GalleryThumbnails-"] .thumbnail-list.slider,
+  [id^="Slider-Thumbnails-"] .thumbnail-list.slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  [id^="GalleryThumbnails-"] .thumbnail-list__item,
+  [id^="Slider-Thumbnails-"] .thumbnail-list__item {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Reduce default slider-mobile-gutter spacing if present */
+  .slider-mobile-gutter .thumbnail-list,
+  .slider-mobile-gutter .thumbnail-list.slider {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   .product__info-wrapper {
     padding: 0 0 0 5rem;
   }
