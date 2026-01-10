@@ -371,12 +371,19 @@ product-info {
   background: transparent;
   color: rgba(var(--color-foreground), 0.9);
   border-radius: 0.6rem;
-  padding: 0;
-  box-shadow: none;
-  border: none;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
   font-size: 1.45rem;
   line-height: 1.6;
   margin-top: 0 !important;
+}
+
+/* Stronger override to remove any inherited top margin from container rules */
+.product__info-container > .product__description.rte.quick-add-hidden,
+.product__info-container .product__description.rte.quick-add-hidden {
+  margin-top: 0 !important;
+  padding: 0 !important;
 }
 
 .product__description.rte.quick-add-hidden p {
