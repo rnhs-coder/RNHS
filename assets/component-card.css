@@ -5,6 +5,13 @@
   text-decoration: none;
 }
 
+/* Make product card borders rounded by default for product cards */
+.product-card-wrapper,
+.product-card-wrapper .card,
+.product-card-wrapper .card__inner {
+  --border-radius: 1.2rem;
+}
+
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);
@@ -107,6 +114,7 @@
   height: var(--swatch--size);
   border: 1px solid rgba(var(--color-foreground), 0.06);
   box-shadow: 0 6px 14px rgba(var(--color-shadow), 0.04);
+  border-radius: 50%;
 }
 
 .card__swatches .swatch--square {

@@ -235,7 +235,7 @@
               <div class="card__swatches" aria-hidden="true">
                 {%- for val in swatch_option.values limit:5 -%}
                   {%- if val.swatch -%}
-                    {% render 'swatch', swatch: val.swatch, shape: 'square' %}
+                    {% render 'swatch', swatch: val.swatch %}
                   {%- endif -%}
                 {%- endfor -%}
               </div>
