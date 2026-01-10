@@ -98,6 +98,33 @@ product-info {
     object-fit: cover !important;
   }
 
+  /* Remove extra space created by thumbnail-list item aspect ratio and reset list spacing */
+  [id^="Slider-Thumbnails-"],
+  [id^="GalleryThumbnails-"] {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  [id^="Slider-Thumbnails-"] .thumbnail-list__item::before,
+  [id^="GalleryThumbnails-"] .thumbnail-list__item::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  [id^="Slider-Thumbnails-"] .thumbnail-list__item,
+  [id^="GalleryThumbnails-"] .thumbnail-list__item {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  [id^="Slider-Thumbnails-"] .thumbnail-list,
+  [id^="GalleryThumbnails-"] .thumbnail-list {
+    gap: 0.8rem !important;
+    align-items: flex-start !important;
+    padding: 0 !important;
+  }
+
   .product__info-wrapper {
     padding: 0 0 0 5rem;
   }
