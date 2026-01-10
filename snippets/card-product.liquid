@@ -132,9 +132,11 @@
           {%- for option in card_product.options_with_values -%}
             {%- assign has_swatch = false -%}
             {%- for v in option.values -%}
-              {%- if v.swatch and (v.swatch.image or v.swatch.color) -%}
-                {%- assign has_swatch = true -%}
-                {%- break -%}
+              {%- if v.swatch -%}
+                {%- if v.swatch.image or v.swatch.color -%}
+                  {%- assign has_swatch = true -%}
+                  {%- break -%}
+                {%- endif -%}
               {%- endif -%}
             {%- endfor -%}
             {%- if has_swatch and swatch_option == null -%}
