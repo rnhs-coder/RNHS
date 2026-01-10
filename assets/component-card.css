@@ -93,6 +93,30 @@
   text-align: var(--text-alignment);
 }
 
+/* Product card swatches */
+.card__swatches {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  align-items: center;
+}
+
+.card__swatches .swatch {
+  --swatch--size: 1.8rem;
+  width: var(--swatch--size);
+  height: var(--swatch--size);
+  border: 1px solid rgba(var(--color-foreground), 0.06);
+  box-shadow: 0 6px 14px rgba(var(--color-shadow), 0.04);
+}
+
+.card__swatches .swatch--square {
+  border-radius: 0.4rem;
+}
+
+.card__swatches .swatch:not(.swatch--unavailable) {
+  cursor: pointer;
+}
+
 .card__media,
 .card .media {
   bottom: 0;

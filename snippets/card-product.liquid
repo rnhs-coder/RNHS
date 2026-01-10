@@ -125,6 +125,32 @@
               </a>
             </h3>
           </div>
+          {%- comment -%}
+            Product card color swatches (show first option with swatch data)
+          {%- endcomment -%}
+          {%- assign swatch_option = null -%}
+          {%- for option in card_product.options_with_values -%}
+            {%- assign has_swatch = false -%}
+            {%- for v in option.values -%}
+              {%- if v.swatch and (v.swatch.image or v.swatch.color) -%}
+                {%- assign has_swatch = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if has_swatch and swatch_option == null -%}
+              {%- assign swatch_option = option -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if swatch_option -%}
+            <div class="card__swatches" aria-hidden="true">
+              {%- for val in swatch_option.values limit:5 -%}
+                {%- if val.swatch -%}
+                  {% render 'swatch', swatch: val.swatch, shape: 'square' %}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
           <div class="card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false -%}
               <span
