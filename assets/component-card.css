@@ -497,6 +497,21 @@
   margin-top: 0.5rem;
 }
 
+/* Tighter spacing for product cards: reduce gap between price and details */
+.product-card-wrapper .card-information > * + * {
+  margin-top: 0.25rem;
+}
+
+.product-card-wrapper .card-information > .price + * {
+  margin-top: 0.15rem;
+}
+
+/* Remove outer shadow for product cards (clean flat look) */
+.product-card-wrapper .card--card:after,
+.product-card-wrapper .card__inner:after {
+  box-shadow: none !important;
+}
+
 .card-information {
   width: 100%;
 }
