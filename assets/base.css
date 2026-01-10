@@ -3662,6 +3662,12 @@ details-disclosure > details {
   text-decoration: none;
 }
 
+#readmore-check:checked ~ .readmore-btn,
+.readmore-btn {
+  box-shadow: none !important;
+  border: none !important;
+}
+
 .readmore-btn::before {
   content: '▾';
   display: inline-block;
