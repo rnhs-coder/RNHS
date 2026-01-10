@@ -47,9 +47,9 @@ product-info {
 
   .product--thumbnail .product__media-wrapper media-gallery > slider-component.thumbnail-slider,
   .product--thumbnail_slider .product__media-wrapper media-gallery > slider-component.thumbnail-slider {
-    width: 6.4rem;
-    flex: 0 0 6.4rem;
-    max-width: 8rem;
+    width: 8rem;
+    flex: 0 0 8rem;
+    max-width: 10rem;
     order: 1;
   }
 
@@ -88,8 +88,8 @@ product-info {
   /* Ensure thumbnails keep visible size in the vertical layout */
   [id^="GalleryThumbnails-"] .thumbnail {
     position: relative !important;
-    height: 6.4rem !important;
-    width: 6.4rem !important;
+    height: 8rem !important;
+    width: 8rem !important;
   }
 
   [id^="GalleryThumbnails-"] .thumbnail img {
@@ -192,6 +192,18 @@ product-info {
 
   .product--right .product__media-wrapper {
     order: 2;
+  }
+
+  /* Increase big image corner radius when layout places media on the right */
+  .product--right .global-media-settings {
+    border-radius: calc(var(--media-radius) + 8px) !important;
+  }
+
+  .product--right .global-media-settings img,
+  .product--right .global-media-settings video,
+  .product--right .global-media-settings model-viewer,
+  .product--right .global-media-settings iframe {
+    border-radius: calc(var(--media-radius) + 8px - var(--media-border-width)) !important;
   }
 }
 
