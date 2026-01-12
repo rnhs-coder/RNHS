@@ -25,6 +25,7 @@
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
@@ -82,6 +83,16 @@
                 height="{{ card_product.featured_media.height }}"
               >
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+
+              <button
+                type="button"
+                class="product-card__wishlist-btn"
+                data-wishlist-btn
+                data-wishlist-id="{{ card_product.id }}"
+                aria-label="{{ 'products.product.add_to_wishlist' | t | default: 'Add to wishlist' }}"
+              >
+                <span class="svg-wrapper">{{ 'icon-wishlist.svg' | inline_asset_content }}</span>
+              </button>
 
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img
@@ -235,7 +246,7 @@
               <div class="card__swatches" aria-hidden="true">
                 {%- for val in swatch_option.values limit:5 -%}
                   {%- if val.swatch -%}
-                    {% render 'swatch', swatch: val.swatch, shape: 'square' %}
+                    {% render 'swatch', swatch: val.swatch %}
                   {%- endif -%}
                 {%- endfor -%}
               </div>
