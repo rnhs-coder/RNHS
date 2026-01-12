@@ -12,6 +12,42 @@
     "slideshow_3YqM3N": {
       "type": "slideshow",
       "blocks": {
+        "slide_UwNDQA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/RNHS2.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_DwArN6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/RNHS_1_f57270d9-77ef-4737-805d-e5b15d024f78.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_RfMUbT": {
           "type": "slide",
           "settings": {
@@ -50,6 +86,8 @@
         }
       },
       "block_order": [
+        "slide_UwNDQA",
+        "slide_DwArN6",
         "slide_RfMUbT",
         "slide_8wBzaP"
       ],
