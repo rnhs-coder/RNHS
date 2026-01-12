@@ -12,6 +12,24 @@
     "slideshow_3YqM3N": {
       "type": "slideshow",
       "blocks": {
+        "slide_AM9Qf4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/RNHS_3.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_UwNDQA": {
           "type": "slide",
           "settings": {
@@ -86,6 +104,7 @@
         }
       },
       "block_order": [
+        "slide_AM9Qf4",
         "slide_UwNDQA",
         "slide_DwArN6",
         "slide_RfMUbT",
