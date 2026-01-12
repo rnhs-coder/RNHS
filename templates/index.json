@@ -99,7 +99,7 @@
       "settings": {
         "title": "Collections",
         "heading_size": "h2",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "columns_desktop": 3,
         "color_scheme": "scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1",
         "show_view_all": false,
