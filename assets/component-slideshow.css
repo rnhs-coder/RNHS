@@ -389,21 +389,21 @@ slideshow-component:not(.page-width) .slider-buttons {
   border: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Centered small pager at bottom of slide */
-.slideshow__pager-bottom {
+/* Center the existing slider counter (dots) over the slide at the bottom */
+.slideshow .slider-counter {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 1.2rem;
   display: flex;
-  gap: 0.5rem;
-  z-index: 50;
+  gap: 0.6rem;
+  z-index: 60;
+  pointer-events: auto;
 }
 
-/* Hide existing numbering dots if present and map to new pager element via JS if desired */
-.slideshow .slider-counter__link .dot,
-.slideshow .slider-counter__link .slider-counter__link--dots {
-  display: none;
+/* Ensure dot links are visible and interactive */
+.slideshow .slider-counter__link {
+  pointer-events: auto;
 }
 
 @media screen and (max-width: 749px) {
@@ -455,33 +455,37 @@ slideshow-component:not(.page-width) .slider-buttons {
   border: 1px solid rgba(255,255,255,0.06) !important;
 }
 
+
 /* Remove pause/autoplay button entirely */
 .slideshow .slideshow__autoplay,
 .slideshow__controls .slideshow__autoplay {
   display: none !important;
 }
 
-/* Hide the legacy control container so only arrows remain visible and positioned */
+/* Keep the control container but make it an overlay so we can position arrows and dots freely */
 .slideshow__controls {
-  display: none !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  pointer-events: none;
+  z-index: 55;
 }
 
-/* But keep prev/next visible and positioned even when inside hidden container */
+/* Prev/Next buttons remain clickable and are absolutely positioned */
 .slideshow__controls .slider-button--prev,
 .slideshow__controls .slider-button--next {
-  display: inline-flex !important;
+  pointer-events: auto !important;
   position: absolute !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
+  z-index: 70 !important;
 }
 
-.slideshow__controls .slider-button--prev {
-  left: 1rem !important;
-}
-
-.slideshow__controls .slider-button--next {
-  right: 1rem !important;
-}
+.slideshow__controls .slider-button--prev { left: 1rem !important; }
+.slideshow__controls .slider-button--next { right: 1rem !important; }
 
 @media screen and (max-width: 749px) {
   .slideshow .slider-button.slider-button--next,
