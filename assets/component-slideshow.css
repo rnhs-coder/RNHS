@@ -199,3 +199,91 @@ slideshow-component:not(.page-width) .slider-buttons {
   opacity: 0;
   transform: scale(0.8);
 }
+
+/* --- UI Enhancements: overlays, transitions, and controls --- */
+.slideshow__slide {
+  opacity: 0;
+  transform: translateZ(0) scale(1.02);
+  transition: opacity 700ms cubic-bezier(.22,.9,.35,1), transform 700ms cubic-bezier(.22,.9,.35,1);
+  backface-visibility: hidden;
+}
+
+.slideshow__slide[aria-hidden="false"],
+.slideshow__slide.is-active {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+  z-index: 1;
+}
+
+.slideshow__slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(var(--color-foreground), 0.06) 0%, rgba(var(--color-foreground), 0.18) 100%);
+  pointer-events: none;
+  transition: opacity 700ms ease;
+}
+
+.slideshow__text.banner__box {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+  padding: 2rem;
+  border-radius: calc(var(--text-boxes-radius) * 1.2);
+  box-shadow: 0 6px 30px rgba(8,15,30,0.25);
+  backdrop-filter: blur(6px);
+}
+
+.slideshow__text h1,
+.slideshow__text .slideshow__heading {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgb(var(--color-foreground));
+  text-shadow: 0 6px 18px rgba(2,6,23,0.35);
+}
+
+.slideshow__text p,
+.slideshow__text .slideshow__description {
+  color: rgba(var(--color-foreground), 0.9);
+  margin-top: 0.6rem;
+}
+
+.slideshow__controls {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  padding: 0.4rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(2,6,23,0.12);
+}
+
+.slider-buttons .slider-button {
+  background: rgba(255,255,255,0.03);
+  border-radius: 999px;
+  padding: 0.6rem;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.slider-buttons .slider-button:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: rgba(255,255,255,0.06);
+}
+
+.slideshow__dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.slideshow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.3);
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.slideshow__dot.is-active {
+  transform: scale(1.6);
+  background: rgb(var(--color-foreground));
+}
+
