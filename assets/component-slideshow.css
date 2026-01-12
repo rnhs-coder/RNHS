@@ -461,6 +461,28 @@ slideshow-component:not(.page-width) .slider-buttons {
   display: none !important;
 }
 
+/* Hide the legacy control container so only arrows remain visible and positioned */
+.slideshow__controls {
+  display: none !important;
+}
+
+/* But keep prev/next visible and positioned even when inside hidden container */
+.slideshow__controls .slider-button--prev,
+.slideshow__controls .slider-button--next {
+  display: inline-flex !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.slideshow__controls .slider-button--prev {
+  left: 1rem !important;
+}
+
+.slideshow__controls .slider-button--next {
+  right: 1rem !important;
+}
+
 @media screen and (max-width: 749px) {
   .slideshow .slider-button.slider-button--next,
   .slideshow .slider-button.slider-button--prev {
