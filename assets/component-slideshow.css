@@ -337,3 +337,82 @@ slideshow-component:not(.page-width) .slider-buttons {
   }
 }
 
+/* Replace legacy top control bar with modern floating controls */
+.slideshow__controls.slideshow__controls--top.slider-buttons.slideshow__controls--border-radius-mobile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 60;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.slideshow__controls.slideshow__controls--top .slider-counter {
+  display: none;
+}
+
+.slideshow__controls.slideshow__controls--top .slider-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8,15,30,0.55);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 22px rgba(2,6,23,0.28);
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.slideshow__controls.slideshow__controls--top .slider-button .svg-wrapper {
+  width: 18px; height: 18px;
+}
+
+.slideshow__controls.slideshow__controls--top .slider-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: rgba(8,15,30,0.7);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.36);
+}
+
+.slideshow__controls.slideshow__controls--top .slideshow__autoplay {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Centered small pager at bottom of slide */
+.slideshow__pager-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.2rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 50;
+}
+
+/* Hide existing numbering dots if present and map to new pager element via JS if desired */
+.slideshow .slider-counter__link .dot,
+.slideshow .slider-counter__link .slider-counter__link--dots {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .slideshow__controls.slideshow__controls--top.slider-buttons.slideshow__controls--border-radius-mobile {
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+  .slideshow__controls.slideshow__controls--top .slider-button {
+    width: 40px; height: 40px;
+  }
+}
+
