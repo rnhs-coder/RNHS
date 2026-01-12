@@ -83,16 +83,6 @@
               >
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-              <button
-                type="button"
-                class="product-card__wishlist-btn"
-                data-wishlist-btn
-                data-wishlist-id="{{ card_product.id }}"
-                aria-label="{{ 'products.product.add_to_wishlist' | t | default: 'Add to wishlist' }}"
-              >
-                <span class="svg-wrapper">{{ 'icon-wishlist.svg' | inline_asset_content }}</span>
-              </button>
-
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img
                   srcset="
@@ -245,7 +235,7 @@
               <div class="card__swatches" aria-hidden="true">
                 {%- for val in swatch_option.values limit:5 -%}
                   {%- if val.swatch -%}
-                    {% render 'swatch', swatch: val.swatch %}
+                    {% render 'swatch', swatch: val.swatch, shape: 'square' %}
                   {%- endif -%}
                 {%- endfor -%}
               </div>
