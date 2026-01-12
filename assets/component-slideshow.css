@@ -347,7 +347,7 @@ slideshow-component:not(.page-width) .slider-buttons {
   padding: 0;
   gap: 0.5rem;
   align-items: center;
-  z-index: 60;
+  z-index: 2; /* keep below header (z-index:3) */
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -397,7 +397,7 @@ slideshow-component:not(.page-width) .slider-buttons {
   bottom: 1.2rem;
   display: flex;
   gap: 0.6rem;
-  z-index: 60;
+  z-index: 2; /* keep below header */
   pointer-events: auto;
 }
 
@@ -426,7 +426,7 @@ slideshow-component:not(.page-width) .slider-buttons {
   top: 50% !important;
   right: 1rem !important;
   transform: translateY(-50%) !important;
-  z-index: 70 !important;
+  z-index: 2 !important; /* below header */
   width: 56px !important;
   height: 56px !important;
   border-radius: 999px !important;
@@ -443,7 +443,7 @@ slideshow-component:not(.page-width) .slider-buttons {
   top: 50% !important;
   left: 1rem !important;
   transform: translateY(-50%) !important;
-  z-index: 70 !important;
+  z-index: 2 !important; /* below header */
   width: 56px !important;
   height: 56px !important;
   border-radius: 999px !important;
@@ -471,7 +471,7 @@ slideshow-component:not(.page-width) .slider-buttons {
   bottom: 0;
   display: block;
   pointer-events: none;
-  z-index: 55;
+  z-index: 1; /* keep below header */
 }
 
 /* Prev/Next buttons remain clickable and are absolutely positioned */
