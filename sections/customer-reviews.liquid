@@ -1,0 +1,37 @@
+{{ 'section-customer-reviews.css' | asset_url | stylesheet_tag }}
+{{ 'customer-reviews.js' | asset_url | script_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
+  @media screen and (min-width: 750px) { .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+
+<div class="customer-reviews color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding page-width" data-section-id="{{ section.id }}" data-product-id="{{ product.id }}" data-endpoint="{{ section.settings.reviews_json_url }}">
+  <h2 class="customer-reviews__heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+  <div class="customer-reviews__list" aria-live="polite">
+    <div class="customer-reviews__empty">No reviews available yet.</div>
+  </div>
+  {% if section.settings.show_cta %}
+    <div class="customer-reviews__cta">
+      <a href="{{ section.settings.cta_link }}" class="button button--primary">{{ section.settings.cta_label }}</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Customer reviews",
+  "tag": "section",
+  "settings": [
+    {"type":"text","id":"heading","default":"Customer reviews","label":"Heading"},
+    {"type":"select","id":"heading_size","options":[{"value":"h2","label":"h2"},{"value":"h1","label":"h1"}],"default":"h2","label":"Heading size"},
+    {"type":"url","id":"reviews_json_url","label":"Reviews JSON endpoint (optional)","info":"If provided the section will fetch reviews from this URL. The endpoint should return JSON array of {name,text,rating,date}. The product id will be appended as ?product_id=..."},
+    {"type":"checkbox","id":"show_cta","label":"Show CTA link","default":false},
+    {"type":"url","id":"cta_link","label":"CTA link","default":"#"},
+    {"type":"text","id":"cta_label","label":"CTA label","default":"Write a review"},
+    {"type":"color_scheme","id":"color_scheme","default":"scheme-1","label":"Color scheme"},
+    {"type":"range","id":"padding_top","min":0,"max":200,"step":4,"unit":"px","default":32,"label":"Padding top"},
+    {"type":"range","id":"padding_bottom","min":0,"max":200,"step":4,"unit":"px","default":32,"label":"Padding bottom"}
+  ]
+}
+{% endschema %}

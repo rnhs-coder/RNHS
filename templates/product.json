@@ -155,9 +155,25 @@
         "padding_bottom": 28
       }
     }
+    ,
+    "customer-reviews": {
+      "type": "customer-reviews",
+      "settings": {
+        "heading": "Customer reviews",
+        "heading_size": "h2",
+        "reviews_json_url": "",
+        "show_cta": false,
+        "cta_link": "#",
+        "cta_label": "Write a review",
+        "color_scheme": "scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "customer-reviews"
   ]
 }
