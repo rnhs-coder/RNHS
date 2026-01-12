@@ -15,7 +15,7 @@
         "slide_RfMUbT": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/RNSH_Website_Banner_1.jpg",
+            "image": "shopify://shop_images/RNHS.jpg",
             "image_overlay_opacity": 0,
             "heading": "Image slide",
             "heading_size": "h2",
@@ -33,7 +33,7 @@
         "slide_8wBzaP": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/RNSH_Website_Banner_3.jpg",
+            "image": "shopify://shop_images/RNHS_1.jpg",
             "image_overlay_opacity": 0,
             "heading": "Image slide",
             "heading_size": "h1",
