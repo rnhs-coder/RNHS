@@ -125,6 +125,54 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
+    "image_banner_dffhX9": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_Mf3d4n": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "text_bAW4zw": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_gG97x7": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Mf3d4n",
+        "text_bAW4zw",
+        "buttons_gG97x7"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "collection_list_T7MJQK": {
       "type": "collection-list",
       "blocks": {
@@ -198,6 +246,7 @@
   },
   "order": [
     "slideshow_3YqM3N",
+    "image_banner_dffhX9",
     "collection_list_T7MJQK",
     "featured_collection"
   ]
