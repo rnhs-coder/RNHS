@@ -105,7 +105,10 @@
               </a>
             </h3>
             {%- if card_collection.description != blank -%}
-              <p class="card__caption">
+            {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
                 <span class="icon-wrap">
                   {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -157,7 +160,10 @@
         </div>
       </div>
     {%- endif -%}
-            <p class="card__caption">
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
               <span class="icon-wrap">
                 {{- 'icon-arrow.svg' | inline_asset_content -}}
