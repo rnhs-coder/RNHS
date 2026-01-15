@@ -104,25 +104,14 @@
                 {%- endif %}
               </a>
             </h3>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-            {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-                {{- card_collection.description | strip_html | truncatewords: 12 -}}
-                <span class="icon-wrap">
-                  {{- 'icon-arrow.svg' | inline_asset_content -}}
-                </span>
-              </p>
-            {%- endif -%}
           </div>
         </div>
       {%- endif -%}
     </div>
-    <div class="slide">
+  </div>
+</div>
+
+<div class="slide">
   <img src="{{ slide.image_url }}" alt="{{ slide.alt_text }}">
   <div class="slide-caption">
     <h2>{{ slide.title }}</h2>
@@ -134,19 +123,6 @@
   <div class="slide-caption">
     <h2>{{ slide.title }}</h2>
     <p>{{ slide.description }}</p>
-  </div>
-</div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading">
-            <a
-              {% if card_collection == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ card_collection.url }}"
-              {% endif %}
-              class="full-unstyled-link"
-            >
               {%- if card_collection.title != blank -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
