@@ -92,11 +92,15 @@
                 {% endif %}
                 class="full-unstyled-link"
               >
+                {%- if card_collection.title == blank -%}
             {%- endif -%}
         </div>
       </div>
     {%- endif -%}
-                  {{- card_collection.title | escape -}}
+            {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
                 {%- else -%}
                   {{ 'onboarding.collection_title' | t }}
                 {%- endif -%}
@@ -130,7 +134,10 @@
         </div>
       </div>
     {%- endif -%}
-                {{- card_collection.title | escape -}}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
               {%- else -%}
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
