@@ -161,12 +161,6 @@
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
               <span class="icon-wrap">
                 {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span>
-            </p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
     {%- if card_collection == blank -%}
       <div class="card__content">
         <div class="card__information">
