@@ -84,7 +84,7 @@
               >
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-              <button
+              {% comment %} <button
                 type="button"
                 class="product-card__wishlist-btn"
                 data-wishlist-btn
@@ -92,7 +92,7 @@
                 aria-label="{{ 'products.product.add_to_wishlist' | t | default: 'Add to wishlist' }}"
               >
                 <span class="svg-wrapper">{{ 'icon-wishlist.svg' | inline_asset_content }}</span>
-              </button>  
+              </button>   {% endcomment %}
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img
                   srcset="
