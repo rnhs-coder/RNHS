@@ -175,7 +175,7 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "title": "Collections",
+        "title": "",
         "heading_size": "h2",
         "image_ratio": "adapt",
         "columns_desktop": 6,
