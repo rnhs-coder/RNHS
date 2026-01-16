@@ -288,11 +288,11 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="/pages/wishlist" class="header__icon header__icon--wishlist link focus-inset" id="wishlist-icon">
+      {% comment %} <a href="/pages/wishlist" class="header__icon header__icon--wishlist link focus-inset" id="wishlist-icon">
         <span class="svg-wrapper">{{ 'icon-wishlist.svg' | inline_asset_content }}</span>
         <div class="wishlist-count-bubble" style="display:none">0</div>
         <span class="visually-hidden">Wishlist</span>
-      </a>
+      </a> {% endcomment %}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
