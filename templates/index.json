@@ -128,6 +128,24 @@
     "collection_list_T7MJQK": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_yyeCRn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_pQbHcq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shirt"
+          }
+        },
+        "featured_collection_YHGyfg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cloth"
+          }
+        },
         "featured_collection_Y38nqq": {
           "type": "featured_collection",
           "settings": {
@@ -148,6 +166,9 @@
         }
       },
       "block_order": [
+        "featured_collection_yyeCRn",
+        "featured_collection_pQbHcq",
+        "featured_collection_YHGyfg",
         "featured_collection_Y38nqq",
         "featured_collection_Jk66gE",
         "featured_collection_yQaMR3"
