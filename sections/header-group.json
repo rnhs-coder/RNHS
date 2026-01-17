@@ -42,7 +42,8 @@
       "type": "header",
       "custom_css": [
         ".header-wrapper {background-color: #1f3a2e;}",
-        ".header__icons span{color: white;}"
+        ".header__icons span {color: white;}",
+        ".list-menu ul li span{color: white;}"
       ],
       "settings": {
         "logo_position": "middle-left",
