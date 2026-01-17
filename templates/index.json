@@ -134,16 +134,16 @@
             "collection": "saree-and-blouses"
           }
         },
+        "featured_collection_YHGyfg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "blouse"
+          }
+        },
         "featured_collection_pQbHcq": {
           "type": "featured_collection",
           "settings": {
             "collection": "shirt"
-          }
-        },
-        "featured_collection_YHGyfg": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "cloth"
           }
         },
         "featured_collection_Y38nqq": {
@@ -167,8 +167,8 @@
       },
       "block_order": [
         "featured_collection_yyeCRn",
-        "featured_collection_pQbHcq",
         "featured_collection_YHGyfg",
+        "featured_collection_pQbHcq",
         "featured_collection_Y38nqq",
         "featured_collection_Jk66gE",
         "featured_collection_yQaMR3"
