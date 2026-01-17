@@ -43,7 +43,8 @@
       "custom_css": [
         ".header-wrapper {background-color: #1f3a2e;}",
         ".header__icons span {color: white;}",
-        ".list-menu li span {color: white;}"
+        ".list-menu li span {color: white;}",
+        ".icon-hamburger{color: white;}"
       ],
       "settings": {
         "logo_position": "middle-left",
