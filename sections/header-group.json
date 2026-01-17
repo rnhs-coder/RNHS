@@ -31,7 +31,7 @@
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-19e3b048-dad9-4449-ad91-97e8d2649231",
+        "color_scheme": "scheme-c6c8a762-4efd-4678-ace4-165a4d35f1c1",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -41,7 +41,7 @@
     "header": {
       "type": "header",
       "custom_css": [
-        ".header-wrapper {background-color: #faf8f0;}"
+        ".header-wrapper {background-color: #1f3a2e;}"
       ],
       "settings": {
         "logo_position": "middle-left",
