@@ -10,7 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/rnhslogo.png",
-    "logo_width": 80,
+    "logo_width": 200,
     "type_header_font": "assistant_n4",
     "heading_scale": 100,
     "type_body_font": "assistant_n4",
@@ -145,11 +145,6 @@
     "blocks": {
       "17370010407503379518": {
         "type": "shopify://apps/wishlist-by-square/blocks/app-embed/88ec2beb-ce43-48ed-b791-0a6554082c2b",
-        "disabled": false,
-        "settings": {}
-      },
-      "9388344762370057067": {
-        "type": "shopify://apps/essential-sticky-cart/blocks/app-embed/824bb1f9-5f36-4608-a60c-1f2b6a6f8834",
         "disabled": false,
         "settings": {}
       }
