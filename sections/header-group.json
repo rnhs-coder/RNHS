@@ -41,7 +41,8 @@
     "header": {
       "type": "header",
       "custom_css": [
-        ".header-wrapper {background-color: #1f3a2e;}"
+        ".header-wrapper {background-color: #1f3a2e;}",
+        ".header__icons span{color: white;}"
       ],
       "settings": {
         "logo_position": "middle-left",
