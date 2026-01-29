@@ -11,7 +11,7 @@
   %}
 {% endcomment %}
 
-{% comment %} {%- liquid
+{%- liquid
   assign swatch_value = null
   if swatch.image
     assign image_url = swatch.image | image_url: width: 50
@@ -29,56 +29,4 @@
   {% else %}
     class="swatch swatch--unavailable{% if shape == 'square' %} swatch--square{% endif %}"
   {% endif %}
-></span> {% endcomment %}
-{%- liquid
-  assign gradient = null
--%}
-
-{%- if swatch.image -%}
-  {%- assign image_url = swatch.image | image_url: width: 50 -%}
-  <span
-    class="swatch{% if shape == 'square' %} swatch--square{% endif %}"
-    style="background-image: url({{ image_url }});"
-  ></span>
-
-{%- elsif swatch.value -%}
-  {%- assign colors = swatch.value | split: '/' -%}
-  {%- assign count = colors.size -%}
-
-  {%- if count == 1 -%}
-    {%- assign gradient = colors[0] -%}
-
-  {%- elsif count == 2 -%}
-    {%- capture gradient -%}
-      linear-gradient(45deg, {{ colors[0] }} 50%, {{ colors[1] }} 50%)
-    {%- endcapture -%}
-
-  {%- elsif count == 3 -%}
-    {%- capture gradient -%}
-      linear-gradient(
-        45deg,
-        {{ colors[0] }} 33%,
-        {{ colors[1] }} 33% 66%,
-        {{ colors[2] }} 66%
-      )
-    {%- endcapture -%}
-
-  {%- elsif count == 4 -%}
-    {%- capture gradient -%}
-      linear-gradient(
-        45deg,
-        {{ colors[0] }} 25%,
-        {{ colors[1] }} 25% 50%,
-        {{ colors[2] }} 50% 75%,
-        {{ colors[3] }} 75%
-      )
-    {%- endcapture -%}
-  {%- endif -%}
-
-  <span
-    class="swatch{% if shape == 'square' %} swatch--square{% endif %}"
-    style="background: {{ gradient | strip }};"
-  ></span>
-{%- else -%}
-  <span class="swatch swatch--unavailable"></span>
-{%- endif -%}
+></span>
