@@ -3705,11 +3705,3 @@ label[for="readmore-check"].readmore-btn:focus {
 
 
 
-/* Multi-color swatches */
-.variant-option__color-swatch {
-  background: linear-gradient(
-    45deg,
-    var(--swatch-color-1) 50%,
-    var(--swatch-color-2) 50%
-  );
-}
