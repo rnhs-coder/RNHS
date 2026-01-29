@@ -147,6 +147,11 @@
         "type": "shopify://apps/wishlist-by-square/blocks/app-embed/88ec2beb-ce43-48ed-b791-0a6554082c2b",
         "disabled": false,
         "settings": {}
+      },
+      "3806842522224694177": {
+        "type": "shopify://apps/eazy-swatches/blocks/eazy_swatches/4af54d60-cc34-4639-b1ce-6ad95a055460",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
