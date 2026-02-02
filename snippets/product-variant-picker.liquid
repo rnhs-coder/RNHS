@@ -226,12 +226,9 @@
             </span>
           </legend>
           {% if option.name == 'Product mix Color' %}
-            <div
-              id="mixColorCircle"
-              class="multi-color-circle"
-              style="margin-bottom: 8px;"
-            ></div>
+            <div id="mixColorCircle" class="multi-color-circle"></div>
           {% endif %}
+
           {% render 'product-variant-options',
             product: product,
             option: option,
