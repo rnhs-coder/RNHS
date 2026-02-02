@@ -1332,41 +1332,6 @@ class CartPerformance {
 }
 
 
-<script>
-  const productVariants = {{ product.variants | json }};
-  const colorOptionName = "Product mix Color";
-  const optionNames = {{ product.options | json }};
-
-  function updateMixColorCircle(variantId) {
-    const variant = productVariants.find(v => v.id == variantId);
-    if (!variant) return;
-
-    const optionIndex = optionNames.indexOf(colorOptionName);
-    if (optionIndex === -1) return;
-
-    const value = variant.options[optionIndex];
-    if (!value) return;
-
-    const colors = value.split('|');
-    const angle = 360 / colors.length;
-
-    const gradient = colors.map((c, i) =>
-      `${c} ${i * angle}deg ${(i + 1) * angle}deg`
-    ).join(',');
-
-    const circle = document.getElementById('mixColorCircle');
-    if (circle) {
-      circle.style.background = `conic-gradient(${gradient})`;
-    }
-  }
-
-  document.addEventListener('variant:change', function (event) {
-    updateMixColorCircle(event.detail.variant.id);
-  });
-
-  // initial load
-  updateMixColorCircle({{ product.selected_or_first_available_variant.id }});
-</script>
 
 
 
