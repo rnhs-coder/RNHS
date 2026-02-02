@@ -537,6 +537,32 @@
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+              
+              {% when 'multi_color_variant_picker' %}
+                {% assign color_list = '' %}
+                  {% for variant in product.variants %}
+                    {% assign color = variant.option1 %}
+                    {% unless color_list contains color %}
+                      {% assign color_list = color_list | append: color | append: ',' %}
+                    {% endunless %}
+                  {% endfor %}
+
+                  {% assign colors = color_list | split: ',' %}
+                  {% assign total = colors.size | minus: 1 %}
+                  {% assign angle = 360 | divided_by: total %}
+
+                  <div class="multi-color-circle"
+                  style="
+                  background: conic-gradient(
+                  {% for color in colors %}
+                    {% if color != blank %}
+                      {{ color }} {{ forloop.index0 | times: angle }}deg {{ forloop.index | times: angle }}deg{% unless forloop.last %},{% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                  );
+                  ">
+                  </div>
+
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
