@@ -225,6 +225,13 @@
               {{- option.selected_value -}}
             </span>
           </legend>
+          {% if option.name == 'Product mix Color' %}
+            <div
+              id="mixColorCircle"
+              class="multi-color-circle"
+              style="margin-bottom: 8px;"
+            ></div>
+          {% endif %}
           {% render 'product-variant-options',
             product: product,
             option: option,
