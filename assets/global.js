@@ -1332,5 +1332,42 @@ class CartPerformance {
 }
 
 
+<script>
+  const productVariants = {{ product.variants | json }};
+  const colorOptionName = "Product mix Color";
+
+  function updateMixColorCircle(variantId) {
+    const variant = productVariants.find(v => v.id == variantId);
+    if (!variant) return;
+
+    const optionIndex =
+      {{ product.options | json }}.indexOf(colorOptionName);
+
+    if (optionIndex === -1) return;
+
+    const colorValue = variant.options[optionIndex];
+    if (!colorValue) return;
+
+    const colors = colorValue.split('|');
+    const angle = 360 / colors.length;
+
+    let gradientParts = colors.map((color, i) => {
+      return `${color} ${i * angle}deg ${(i + 1) * angle}deg`;
+    });
+
+    document.getElementById('mixColorCircle').style.background =
+      `conic-gradient(${gradientParts.join(',')})`;
+  }
+
+  document.addEventListener('variant:change', function (event) {
+    updateMixColorCircle(event.detail.variant.id);
+  });
+
+  // initial load
+  updateMixColorCircle({{ product.selected_or_first_available_variant.id }});
+</script>
+
+
+
 
 
