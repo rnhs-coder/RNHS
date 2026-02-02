@@ -1335,28 +1335,29 @@ class CartPerformance {
 <script>
   const productVariants = {{ product.variants | json }};
   const colorOptionName = "Product mix Color";
+  const optionNames = {{ product.options | json }};
 
   function updateMixColorCircle(variantId) {
     const variant = productVariants.find(v => v.id == variantId);
     if (!variant) return;
 
-    const optionIndex =
-      {{ product.options | json }}.indexOf(colorOptionName);
-
+    const optionIndex = optionNames.indexOf(colorOptionName);
     if (optionIndex === -1) return;
 
-    const colorValue = variant.options[optionIndex];
-    if (!colorValue) return;
+    const value = variant.options[optionIndex];
+    if (!value) return;
 
-    const colors = colorValue.split('|');
+    const colors = value.split('|');
     const angle = 360 / colors.length;
 
-    let gradientParts = colors.map((color, i) => {
-      return `${color} ${i * angle}deg ${(i + 1) * angle}deg`;
-    });
+    const gradient = colors.map((c, i) =>
+      `${c} ${i * angle}deg ${(i + 1) * angle}deg`
+    ).join(',');
 
-    document.getElementById('mixColorCircle').style.background =
-      `conic-gradient(${gradientParts.join(',')})`;
+    const circle = document.getElementById('mixColorCircle');
+    if (circle) {
+      circle.style.background = `conic-gradient(${gradient})`;
+    }
   }
 
   document.addEventListener('variant:change', function (event) {
@@ -1366,6 +1367,7 @@ class CartPerformance {
   // initial load
   updateMixColorCircle({{ product.selected_or_first_available_variant.id }});
 </script>
+
 
 
 
