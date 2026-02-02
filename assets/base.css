@@ -3705,3 +3705,10 @@ label[for="readmore-check"].readmore-btn:focus {
 
 
 
+.multi-color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+}
