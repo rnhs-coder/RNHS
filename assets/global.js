@@ -1124,39 +1124,6 @@ class VariantSelects extends HTMLElement {
 }
 
 customElements.define('variant-selects', VariantSelects);
-<script>
-  const productVariants = {{ product.variants | json }};
-  const optionNames = {{ product.options | json }};
-  const colorOptionName = "Product mix Color";
-
-  function updateMixColorCircle(variantId) {
-    const variant = productVariants.find(v => v.id == variantId);
-    if (!variant) return;
-
-    const optionIndex = optionNames.indexOf(colorOptionName);
-    if (optionIndex === -1) return;
-
-    const optionValue = variant.options[optionIndex];
-    const colors = mixColorMap[optionValue];
-    if (!colors || !colors.length) return;
-
-    const angle = 360 / colors.length;
-    const gradient = colors.map((c, i) =>
-      `${c} ${i * angle}deg ${(i + 1) * angle}deg`
-    ).join(',');
-
-    const circle = document.getElementById('mixColorCircle');
-    if (circle) {
-      circle.style.background = `conic-gradient(${gradient})`;
-    }
-  }
-
-  document.addEventListener('variant:change', function (event) {
-    updateMixColorCircle(event.detail.variant.id);
-  });
-
-  updateMixColorCircle({{ product.selected_or_first_available_variant.id }});
-</script>
 
 
 class ProductRecommendations extends HTMLElement {
