@@ -539,7 +539,7 @@
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 
                 {% if option.name == 'Product mix Color' %}
-                  <div id="mixColorCircle" class="multi-color-circle">sdasdas</div>
+                  <div id="mixColorCircle" class="multi-color-circle"></div>
                 {% endif %}
 
 
@@ -801,22 +801,6 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
-    <script>
-  const mixColorMap = {
-    {% for option in product.options_with_values %}
-      {% if option.name == 'Product mix Color' %}
-        {% for value in option.values %}
-          "{{ value }}": [
-            {% for swatch in value.swatch.colors %}
-              "{{ swatch }}"{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          ]{% unless forloop.last %},{% endunless %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  };
-</script>
-
   </div>
 </product-info>
 
